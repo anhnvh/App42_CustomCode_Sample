@@ -14,8 +14,8 @@ import com.shephertz.app42.paas.sdk.java.log.LogService;
 
 public class MyCustomCode implements Executor {
 
-	 private ServiceAPI sp = new ServiceAPI("YOUR_API_Key", "YOUR_SECRET_KEY");
-
+	 private ServiceAPI sp = new ServiceAPI("68127343b272cf795247487265de2c2eddb0ef345913b1bf38ef008c32d088d1", "43bd5eb25e402c703d876acc1ee787597fa1ac8617b65be8e34ecb1d58fba805");
+	 
 
 	private final int HTTP_STATUS_SUCCESS = 200;
 
@@ -26,7 +26,7 @@ public class MyCustomCode implements Executor {
 	 */
 	@Override
 	public HttpResponseObject execute(HttpRequestObject request) {
-
+		sp.setBaseURL("http://", "localhost", 8090);
 		JSONObject body = request.getBody();
 
 		HashMap<String, String> requestParamMap = request.getParameterMap();

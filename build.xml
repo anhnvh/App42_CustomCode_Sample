@@ -7,14 +7,11 @@
     <property file="build.properties" />
 
 <path id="main.classpath">
-    <pathelement location="bin"/>
-		<pathelement path="lib/json-org.jar" />
-		<pathelement path="lib/httpclient-4.1.jar" />
-		<pathelement path="lib/httpcore-4.1.jar" />
-		<pathelement path="lib/App42_SERVICE_JAVA_API-0.8.1.1.jar" />
-	<pathelement path="lib/app42CCLib-0.5.jar" />
-	
-  </path>
+ <pathelement location="bin"/>
+    <fileset dir="lib">
+        <include name="*.jar"/>
+    </fileset>
+ </path>
 
    	
 	<target name="compile" depends="clean" > 
@@ -22,10 +19,11 @@
 		 <javac srcdir="src" debug="true"
 		           destdir="bin"
 		           source="1.6"
-		           classpathref="main.classpath" includes="**/*.java" excludes="**/*Test* " />
-			  
-
-
+		           classpathref="main.classpath" includes="**/*.java"  />
+		<javac srcdir="test" debug="true"
+		           destdir="bin"
+		           source="1.6"
+		           classpathref="main.classpath" includes="**/*.java"  />
 	</target>
 	
 	
@@ -35,15 +33,70 @@
 	        <delete dir="bin/com" verbose="true" />
 			<delete dir="bin/classes" verbose="true" />
 	    </target>
+		
 	<target name="jar" depends="compile" > 
-	
-	 <jar destfile="${jarFile}.jar">
+	 <input
+			message="Enter Name of Custom Code App"
+			addproperty="jarFileName"
+			defaultvalue="MyCustomCode"
+		/>
+	 <jar destfile="${jarFileName}.jar" >
+		
 	      <fileset dir="bin">
 			<include name="**/*.class" />
 			<include name="**/*.properties" />
-			<exclude name="**/*Test* "/>
 			
 	      </fileset>
 	    </jar>
+	</target>
+	
+	<target name="deploy" depends="jar" >
+		 <input
+			message="Enter Name of Custom Code App"
+			addproperty="jarFileName"
+			defaultvalue="MyCustomCode"
+		/>
+		 <java classname="com.shephertz.app42.paas.customcode.util.AntHelper"
+           fork="true" 
+           failonerror="true"
+           >
+         <arg value="${apiKey}"/>
+		 <arg value="${secretKey}"/>
+		 <arg value="${jarFileName}"/>
+		 <arg value="upload"/>
+         <classpath>
+			<pathelement path="bin"/>
+			<pathelement path="."/>
+			<fileset dir="lib">
+				<include name="**/*.jar"/>
+			</fileset>
+			<pathelement location="classes"/>
+		</classpath>
+       </java>
+	</target>
+	
+		<target name="run" >
+		 <input
+			message="Enter Name of Custom Code App"
+			addproperty="jarFileName"
+			defaultvalue="MyCustomCode"
+		/>
+		 <java classname="com.shephertz.app42.paas.customcode.util.AntHelper"
+           fork="true" 
+           failonerror="true"
+           >
+         <arg value="${apiKey}"/>
+		 <arg value="${secretKey}"/>
+		 <arg value="${jarFileName}"/>
+		 <arg value="run"/>
+         <classpath>
+			<pathelement path="bin"/>
+			<pathelement path="."/>
+			<fileset dir="lib">
+				<include name="**/*.jar"/>
+			</fileset>
+			<pathelement location="classes"/>
+		</classpath>
+       </java>
 	</target>
 </project>
