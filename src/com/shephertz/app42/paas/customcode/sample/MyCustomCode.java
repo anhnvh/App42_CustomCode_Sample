@@ -14,12 +14,8 @@ import com.shephertz.app42.paas.sdk.java.log.LogService;
 
 public class MyCustomCode implements Executor {
 
-	// private ServiceAPI sp = new ServiceAPI("YOUR_API_Key",
-	// "YOUR_SECRET_KEY");
-	private ServiceAPI sp = new ServiceAPI(
-			"5692c0ccfbae90543587fd9281e983d4687b82fe2ebf973ff79ab7cb7c58d44a",
-			"8a27b3add931b582827a92e59ffaa89e2195082b91bc39c12af64a693e8b8e5e");
-	//
+	 private ServiceAPI sp = new ServiceAPI("YOUR_API_Key", "YOUR_SECRET_KEY");
+
 
 	private final int HTTP_STATUS_SUCCESS = 200;
 
