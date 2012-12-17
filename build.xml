@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="core" default="jar">
+
+    <!-- The local.properties file is created and updated by the 'android' tool.
+         It contains the path to the SDK. It should *NOT* be checked in in Version
+         Control Systems. -->
+    <property file="build.properties" />
+
+<path id="main.classpath">
+    <pathelement location="bin"/>
+		<pathelement path="lib/json-org.jar" />
+		<pathelement path="lib/httpclient-4.1.jar" />
+		<pathelement path="lib/httpcore-4.1.jar" />
+		<pathelement path="lib/App42_SERVICE_JAVA_API-0.8.1.1.jar" />
+	<pathelement path="lib/app42CCLib-0.5.jar" />
+	
+  </path>
+
+   	
+	<target name="compile" depends="clean" > 
+	
+		 <javac srcdir="src" debug="true"
+		           destdir="bin"
+		           source="1.6"
+		           classpathref="main.classpath" includes="**/*.java" excludes="**/*Test* " />
+			  
+
+
+	</target>
+	
+	
+	
+	 <target name="clean" description="Removes output files ">
+	      
+	        <delete dir="bin/com" verbose="true" />
+			<delete dir="bin/classes" verbose="true" />
+	    </target>
+	<target name="jar" depends="compile" > 
+	
+	 <jar destfile="${jarFile}.jar">
+	      <fileset dir="bin">
+			<include name="**/*.class" />
+			<include name="**/*.properties" />
+			<exclude name="**/*Test* "/>
+			
+	      </fileset>
+	    </jar>
+	</target>
+</project>
