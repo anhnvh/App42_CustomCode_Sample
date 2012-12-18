@@ -43,8 +43,8 @@
 	 <jar destfile="${jarFileName}.jar" >
 		
 	      <fileset dir="bin">
-			<include name="**/*.class" />
-			<include name="**/*.properties" />
+			<include name="com/shephertz/**/*.class" />
+			<include name="com/shephertz/**/*.properties" />
 			
 	      </fileset>
 	    </jar>
@@ -56,7 +56,7 @@
 			addproperty="jarFileName"
 			defaultvalue="MyCustomCode"
 		/>
-		 <java classname="com.shephertz.app42.paas.customcode.util.AntHelper"
+		 <java classname="com.myapp.helper.AntHelper"
            fork="true" 
            failonerror="true"
            >
@@ -81,7 +81,7 @@
 			addproperty="jarFileName"
 			defaultvalue="MyCustomCode"
 		/>
-		 <java classname="com.shephertz.app42.paas.customcode.util.AntHelper"
+		 <java classname="com.myapp.helper.AntHelper"
            fork="true" 
            failonerror="true"
            >
@@ -89,6 +89,7 @@
 		 <arg value="${secretKey}"/>
 		 <arg value="${jarFileName}"/>
 		 <arg value="run"/>
+		 <arg value="${jsonRequestBody}"/>
          <classpath>
 			<pathelement path="bin"/>
 			<pathelement path="."/>
