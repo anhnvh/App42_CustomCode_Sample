@@ -10,9 +10,14 @@ public class AntHelper {
 	
 	
 	
+	/**
+	 * Deploy the Custom Code module by given name and jar file location
+	 * @param apiKey
+	 * @param secretKey
+	 * @param name
+	 */
 	public static void upload(String apiKey, String secretKey, String name) {
 		ServiceAPI sp = new ServiceAPI(apiKey, secretKey);
-		sp.setBaseURL("http://", "localhost", 8090); 
 		CustomCodeService customCodeService = sp.buildCustomCodeService();
 		customCodeService.deployJarFile(name, name+".jar");
 	}
@@ -26,11 +31,33 @@ public class AntHelper {
 		}else if(args[3].equals("run")) {
 			run(args[0], args[1], args[2], args[4]);
 		}
+		else if(args[3].equals("undeploy")) {
+			undeploy(args[0], args[1], args[2]);
+		}
 	}
 
-	private static void run(String apiKey, String secretKey, String name, String body) throws JSONException {
+	/**
+	 * Undeploy the Custom Code module by Given Name
+	 * @param apiKey
+	 * @param secretKey
+	 * @param name
+	 */
+	public static void undeploy(String apiKey, String secretKey, String name) {
 		ServiceAPI sp = new ServiceAPI(apiKey, secretKey);
-		sp.setCustomCodeURL("http://localhost:8080/"); 
+		CustomCodeService customCodeService = sp.buildCustomCodeService();
+		customCodeService.undeployJarFile(name);	
+	}
+
+	/**
+	 * Runs the cloud code by given name
+	 * @param apiKey
+	 * @param secretKey
+	 * @param name
+	 * @param body
+	 * @throws JSONException
+	 */
+	public static void run(String apiKey, String secretKey, String name, String body) throws JSONException {
+		ServiceAPI sp = new ServiceAPI(apiKey, secretKey);
 		CustomCodeService customCodeService = sp.buildCustomCodeService();
 		if(body!=null)
 			System.out.println("Response From Custom Code : " + customCodeService.runJavaCode(name, new JSONObject(body)));

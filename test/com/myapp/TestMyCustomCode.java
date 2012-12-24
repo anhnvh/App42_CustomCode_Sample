@@ -25,15 +25,14 @@ public class TestMyCustomCode {
 	public static void testMyCode() throws Exception {
 		
 		Executor executor = new MyCustomCode();
-		HashMap<String, String> parameterMap  = new HashMap<String, String>(); 
-		parameterMap.put("param1", "myCustomCodeParam");
+
 		//Create Request Body 
 		JSONObject jsonBody = new JSONObject();
-		jsonBody.put("name", "John");
-		jsonBody.put("age", 30);
-		jsonBody.put("SSN", "XXXXXXXXX");
+		jsonBody.put("Gamename", "XXXX");
+		jsonBody.put("Username", "ABCDXYZ");
+		jsonBody.put("Score", 2 );
 		
-		HttpRequestObject request = new HttpRequestObject(parameterMap, jsonBody );
+		HttpRequestObject request = new HttpRequestObject(new HashMap<String, String>(), jsonBody );
 		executor.execute(request);
 	}
 	

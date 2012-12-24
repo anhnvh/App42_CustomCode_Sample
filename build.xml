@@ -100,4 +100,31 @@
 		</classpath>
        </java>
 	</target>
+	
+	
+	
+		<target name="undeploy" >
+		 <input
+			message="Enter Name of Custom Code App"
+			addproperty="jarFileName"
+			defaultvalue="MyCustomCode"
+		/>
+		 <java classname="com.myapp.helper.AntHelper"
+           fork="true" 
+           failonerror="true"
+           >
+		 <arg value="${apiKey}"/>
+		 <arg value="${secretKey}"/>
+		 <arg value="${jarFileName}"/>
+		 <arg value="undeploy"/>
+         <classpath>
+			<pathelement path="bin"/>
+			<pathelement path="."/>
+			<fileset dir="lib">
+				<include name="**/*.jar"/>
+			</fileset>
+			<pathelement location="classes"/>
+		</classpath>
+       </java>
+	</target>
 </project>

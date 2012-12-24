@@ -14,37 +14,36 @@ import com.shephertz.app42.paas.sdk.java.log.LogService;
 
 public class MyCustomCode implements Executor {
 
-	 private ServiceAPI sp = new ServiceAPI("68127343b272cf795247487265de2c2eddb0ef345913b1bf38ef008c32d088d1", "43bd5eb25e402c703d876acc1ee787597fa1ac8617b65be8e34ecb1d58fba805");
+	 private ServiceAPI sp = new ServiceAPI(	  	
+			     "<YOUR_APIKEY>",
+			      "<YOUR_SECRET_KEY>");
 	 
 
 	private final int HTTP_STATUS_SUCCESS = 200;
 
-	private String moduleName = "MyCustomCode";
+	private String moduleName = "App42CustomCodeTest";
 
-	/* (non-Javadoc)
-	 * @see com.shephertz.app42.paas.customcode.Executor#execute(com.shephertz.app42.paas.customcode.HttpRequestObject)
+	
+	/** 
+	 * Write your custom code inside this method 
 	 */
 	@Override
 	public HttpResponseObject execute(HttpRequestObject request) {
-		sp.setBaseURL("http://", "localhost", 8090);
 		JSONObject body = request.getBody();
-
-		HashMap<String, String> requestParamMap = request.getParameterMap();
 
 		// Build Log Service For logging in Your Code
 		LogService logger = sp.buildLogService();
-		logger.debug(" Recieved Request Body : " + body.toString(), moduleName);
-		logger.debug(" Recieved Request Parameter : " + requestParamMap, moduleName);
+		logger.debug(" Recieved Request Body : :" + body.toString(), moduleName);
 
-		// Write Your Custom Code
+		// Write Your Custom Code Here
 		// ......//
 
 		logger.info("Running Custom Code Hello World  ", moduleName);
+		
 		// Create JSON Response Based on Your business logic
 		JSONObject jsonResponse = new JSONObject();
 		try {
-			jsonResponse.put("name", "John");
-			jsonResponse.put("age", 30);
+			jsonResponse.put("name", "App42CustomCodeTest");
 			//....//
 			//....//
 		} catch (JSONException e) {
