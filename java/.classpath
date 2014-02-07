@@ -8,7 +8,7 @@
 	<classpathentry kind="lib" path="lib/commons-logging-api-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpclient-4.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.1.jar"/>
-	<classpathentry kind="lib" path="lib/App42_SERVICE_JAVA_API_1.1.jar"/>
+	<classpathentry kind="lib" path="lib/App42_JAVA_SDK_1.9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_16"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
